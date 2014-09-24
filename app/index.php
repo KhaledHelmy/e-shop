@@ -57,6 +57,9 @@
 			</div>
 		</div>
 		<hr/>
+		<?php
+			
+		?>
 	</body>
 </html>
 <?php $db->close() ?>

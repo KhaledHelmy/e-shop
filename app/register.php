@@ -77,6 +77,7 @@ if(isset($_POST['submit-form'])) {
 	Last Name: <input type="text" value="<?php echo $username; ?>" name="lastname" /><br/>
 	Password: <input type="password" name="password" /><br/>
 	Password (confirm): <input type="password" name="password-confirm" /><br/>
+	
 	<input type="submit" value="Register" name="submit-form" />
 
 	</form>
