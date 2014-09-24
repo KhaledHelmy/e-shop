@@ -5,7 +5,7 @@ class DB {
 
 	protected $db_name = 'eshop';
 	protected $db_user = 'root';
-	protected $db_pass = 'mussab';
+	protected $db_pass = 'root';
 	protected $db_host = 'localhost';
 
 	//open a connection to the database. Make sure this is called
