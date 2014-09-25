@@ -64,7 +64,18 @@
 					<div class='item'>
 						<p><img src=$row[image_url] width='100px' height='120px' /></p>
 						<p>$row[title]</p>
-						<p>$row[price] EGP</p>
+				";
+				if ($row['stock'] < 1) {
+					echo "
+						<img src='http://hightechdealz.com/images/sold-out-icon-2.png' width='60px' height='60px' />
+					";
+				}
+				else {
+					echo "
+						<p><input type='image' src='http://www.losangelesmerchantservices.com/Shopping_Cart_Processing_Software.jpg' name='buy' width='25px' height='25px'>$row[price] EGP</p>
+					";
+				}
+				echo "
 					</div>
 				";
 			}
