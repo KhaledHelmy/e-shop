@@ -62,12 +62,11 @@
 			while ($row = mysql_fetch_array($result)) {
 				echo "
 					<div class='item'>
-						<img src=$row[image_url] /><br>
-						$row[title]<br>
-						$row[price] EGP
+						<p><img src=$row[image_url] width='100px' height='120px' /></p>
+						<p>$row[title]</p>
+						<p>$row[price] EGP</p>
 					</div>
 				";
-				//echo $row{'title'}." ".$row{'stock'}." "."<img src='".$row{'image_url'}."'/>"."<br>";
 			}
 		?>
 	</body>
