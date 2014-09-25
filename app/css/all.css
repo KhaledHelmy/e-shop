@@ -51,3 +51,24 @@ hr, h1{
 form{
 	display: block;
 }
+.item {
+    width:100px;
+    text-align:center;
+    border: 1px solid #D9D9D9;
+    padding: 0px;
+    list-style: none;
+    width: 150px;
+    float: left;    
+    margin-right: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    -moz-border-radius: 10px; /* firefox rounded corners */
+    -webkit-border-radius: 10px; /* Safari rounded corners */
+    min-height: 220px;
+}
+.item li h1 {
+text-align:center:
+}
+.item li#white{
+    min-height: 220px;
+}
