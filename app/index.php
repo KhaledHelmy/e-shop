@@ -57,6 +57,18 @@
 			</div>
 		</div>
 		<hr/>
+		<?php
+			$result = mysql_query("SELECT * FROM products");
+			while ($row = mysql_fetch_array($result)) {
+				echo "
+					<div class='item'>
+						<p><img src=$row[image_url] width='100px' height='120px' /></p>
+						<p>$row[title]</p>
+						<p>$row[price] EGP</p>
+					</div>
+				";
+			}
+		?>
 	</body>
 </html>
 <?php $db->close() ?>

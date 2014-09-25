@@ -72,10 +72,12 @@ if(isset($_POST['submit-form'])) {
 	<?php echo ($error != "") ? $error : ""; ?>
 	<form action="register.php" method="post">
 
-	Username: <input type="text" value="<?php echo $username; ?>" name="username" /><br/>
-	Password: <input type="password" value="<?php echo $password; ?>" name="password" /><br/>
-	Password (confirm): <input type="password" value="<?php echo $password_confirm; ?>" name="password-confirm" /><br/>
 	E-Mail: <input type="text" value="<?php echo $email; ?>" name="email" /><br/>
+	First Name: <input type="text" value="<?php echo $username; ?>" name="firstname" /><br/>
+	Last Name: <input type="text" value="<?php echo $username; ?>" name="lastname" /><br/>
+	Password: <input type="password" name="password" /><br/>
+	Password (confirm): <input type="password" name="password-confirm" /><br/>
+	
 	<input type="submit" value="Register" name="submit-form" />
 
 	</form>
