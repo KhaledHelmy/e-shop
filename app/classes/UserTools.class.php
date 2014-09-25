@@ -10,11 +10,11 @@ class UserTools {
 	//username and password match a row in the database.
 	//If it is successful, set the session variables
 	//and store the user object within.
-	public function login($username, $password)
+	public function login($email, $password)
 	{
 
 		$hashedPassword = md5($password);
-		$result = mysql_query("SELECT * FROM users WHERE user_name = '$username' AND password = '$hashedPassword'");
+		$result = mysql_query("SELECT * FROM users WHERE email = '$email' AND password = '$hashedPassword'");
 		if(mysql_num_rows($result) == 1)
 		{
 			$_SESSION["user"] = serialize(new User(mysql_fetch_assoc($result)));

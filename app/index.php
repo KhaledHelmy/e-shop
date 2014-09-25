@@ -1,17 +1,17 @@
 <?php
 	require_once 'includes/global.inc.php';
 	$error = "";
-	$username = "";
+	$email = "";
 	$password = "";
 	//check to see if they've submitted the login form
 	if(isset($_POST['submit-login'])) { 
 
-		$username = $_POST['username'];
+		$email = $_POST['email'];
 		$password = $_POST['password'];
 
 		$userTools = new UserTools();
-		if(!$userTools->login($username, $password)){
-			$error = "Incorrect username or password. Please try again.";
+		if(!$userTools->login($email, $password)){
+			$error = "Incorrect email or password. Please try again.";
 		}
 	}
 	$logged_in = false;
@@ -44,8 +44,8 @@
 					}else{
 						echo "
 						<form action='index.php' method='POST' id='credentials'>
-							<label for='usernameform'>User Name :</label>
-							<input type='text' name='username' id='usernameform'/>
+							<label for='emailform'>Email :</label>
+							<input type='text' name='email' id='emailform'/>
 							<label for='passwordform'>Password :</label>
 							<input type='text' name='password' id='passwordform'/>
 							<input type='submit' name='submit-login'value='Login'/>
