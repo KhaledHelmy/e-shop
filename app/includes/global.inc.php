@@ -13,9 +13,13 @@ $userTools = new UserTools();
 //start the session
 session_start();
 
+$current_user;
+$logged_in = false;
 //refresh session variables if logged in
 if(isset($_SESSION['logged_in'])) {
-	$user = unserialize($_SESSION['user']);
-	$_SESSION['user'] = serialize($userTools->get($user->id));
+	$current_user = unserialize($_SESSION['user']);
+	$_SESSION['user'] = serialize($userTools->get($current_user->id));
+	$current_user = unserialize($_SESSION['user']);
+	$logged_in = true;
 }
 ?>

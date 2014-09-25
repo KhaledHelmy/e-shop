@@ -19,7 +19,7 @@ class DB {
 
 	//close the connection
 	public function close(){
-		mysql_close();
+		return mysql_close();
 	}
 
 	//takes a mysql row set and returns an associative array, where the keys
