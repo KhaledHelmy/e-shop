@@ -6,7 +6,6 @@ require_once 'DB.class.php';
 class User {
 
 	public $id;
-	public $username;
 	public $firstname;
 	public $lastname;
 	public $hashedPassword;
@@ -17,10 +16,9 @@ class User {
 	//Takes an associative array with the DB row as an argument.
 	function __construct($data) {
 		$this->id = (isset($data['id'])) ? $data['id'] : "";
-		$this->username = (isset($data['user_name'])) ? $data['user_name'] : "";
 		$this->hashedPassword = (isset($data['password'])) ? $data['password'] : "";
 		$this->email = (isset($data['email'])) ? $data['email'] : "";
-		$this->avatar = (isset($data['avatar'])) ? $data['avatar'] : "";
+		$this->avatar = (!empty($data['avatar'])) ? $data['avatar'] : "img/profile.png";
 		$this->firstname = (isset($data['first_name'])) ? $data['first_name'] : "";
 		$this->lastname = (isset($data['last_name'])) ? $data['last_name'] : "";
 	}
@@ -31,7 +29,6 @@ class User {
 
 		//set the data array
 		$data = array(
-			"user_name" => "'$this->username'",
 			"first_name" => "'$this->firstname'",
 			"last_name" => "'$this->lastname'",
 			"password" => "'$this->hashedPassword'",

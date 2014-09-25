@@ -7,7 +7,7 @@ require_once 'DB.class.php';
 class UserTools {
 
 	//Log the user in. First checks to see if the 
-	//username and password match a row in the database.
+	//email and password match a row in the database.
 	//If it is successful, set the session variables
 	//and store the user object within.
 	public function login($email, $password)
@@ -34,10 +34,10 @@ class UserTools {
 		session_destroy();
 	}
 
-	//Check to see if a username exists.
+	//Check to see if a email exists.
 	//This is called during registration to make sure all user names are unique.
-	public function checkUsernameExists($username) {
-		$result = mysql_query("select id from users where username='$username'");
+	public function checkEmailExists($email) {
+		$result = mysql_query("select id from users where email='$email'");
     	if(mysql_num_rows($result) == 0)
     	{
 			return false;
@@ -52,7 +52,6 @@ class UserTools {
 	{
 		$db = new DB();
 		$result = $db->select('users', "id = $id");
-		
 		return new User($result);
 	}
 	

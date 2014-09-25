@@ -26,38 +26,10 @@
 <html>
 	<head>
 		<title>eShop</title>
-		<link rel="stylesheet" type="text/css" href="css/credentials.css"/>
-		<link rel="stylesheet" type="text/css" href="css/all.css"/>
 	</head>
 	<body>
-		<div class="container">
-			<h1>eShop</h1>
-			<div class="pull-right">
-				<?php
-					echo $error;
-					if ($logged_in) {
-						echo "
-						<img src='$user->avatar' height=25 width=25/>
-						<a href='edit.php'>$user->firstname $user->lastname</a><br/>
-						<a href='logout.php'>Logout</a>
-						";
-					}else{
-						echo "
-						<form action='index.php' method='POST' id='credentials'>
-							<label for='emailform'>Email :</label>
-							<input type='text' name='email' id='emailform'/>
-							<label for='passwordform'>Password :</label>
-							<input type='text' name='password' id='passwordform'/>
-							<input type='submit' name='submit-login'value='Login'/>
-						</form>
-						<a href='register.php'>Register</a>
-						";
-					}
-				?>
-			</div>
-		</div>
-		<hr/>
 		<?php
+			require_once "partials/header.php";
 			$result = mysql_query("SELECT * FROM products");
 			while ($row = mysql_fetch_array($result)) {
 				echo "
@@ -72,7 +44,9 @@
 				}
 				else {
 					echo "
-						<p><input type='image' src='http://www.losangelesmerchantservices.com/Shopping_Cart_Processing_Software.jpg' name='buy' width='25px' height='25px'>$row[price] EGP</p>
+						<p><input type='image'
+						src='http://www.losangelesmerchantservices.com/Shopping_Cart_Processing_Software.jpg'
+						name='buy' width='25px' height='25px'>$row[price] EGP</p>
 					";
 				}
 				echo "
