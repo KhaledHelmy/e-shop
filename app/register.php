@@ -27,6 +27,12 @@ if(isset($_POST['submit-form'])) {
 	$success = true;
 	$userTools = new UserTools();
 
+	if(empty($email) || empty($firstname) || empty($password) || empty($password_confirm))
+	{
+		$error .= "Some required fields are missing.<br/> \n\r";
+		$success = false;
+	}
+
 	//validate that the form was filled out correctly
 	//check to see if user name already exists
 	if($userTools->checkEmailExists($email))
@@ -76,18 +82,23 @@ if(isset($_POST['submit-form'])) {
 	<title>Registration</title>
 </head>
 <body>
+	<?php require_once "partials/header.php"; ?>
 	<?php echo ($error != "") ? $error : ""; ?>
-	<form action="register.php" method="post">
-
-	E-Mail: <input type="text" value="<?php echo $email; ?>" name="email" /><br/>
-	First Name: <input type="text" value="<?php echo $firstname; ?>" name="firstname" /><br/>
-	Last Name: <input type="text" value="<?php echo $lastname; ?>" name="lastname" /><br/>
-	Photo Url: <input type="text" value="<?php echo $avatar; ?>" name="avatar" /><br/>
-	Password: <input type="password" name="password" /><br/>
-	Password (confirm): <input type="password" name="password-confirm" /><br/>
-	
-	<input type="submit" value="Register" name="submit-form" />
-
-	</form>
+	<center>
+		<form action="register.php" method="POST">
+			<fieldset style="width:250px">
+				<legend align="center">Register</legend>
+				
+				<p><input type="email" value="<?php echo $email; ?>" name="email" placeholder="Email (required)" size="30" required /><p/>
+				<p><input type="text" value="<?php echo $firstname; ?>" name="firstname" placeholder="First Name (required)" size="30" required /><p/>
+				<p><input type="text" value="<?php echo $lastname; ?>" name="lastname" placeholder="Last Name" size="30" /><p/>
+				<p><input type="text" value="<?php echo $avatar; ?>" name="avatar" placeholder="Avatar URL" size="30" /><p/>
+				<p><input type="password" name="password" placeholder="Password (required)" size="30" required /><p/>
+				<p><input type="password" name="password-confirm" placeholder="Confirm Password (required)" size="30" required /><p/>
+				
+				<input type="submit" value="Register" name="submit-form" />
+			</fieldset>
+		</form>
+	</center>
 </body>
 </html>

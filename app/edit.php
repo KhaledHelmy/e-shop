@@ -29,6 +29,12 @@
 		$success = true;
 		$userTools = new UserTools();
 
+		if(empty($email) || empty($firstname) || empty($password) || empty($password_confirm) || empty($password_current))
+		{
+			$error_edit .= "Some required fields are missing.<br/> \n\r";
+			$success = false;
+		}
+
 		//validate the current password
 		// echo $current_user->hashedPassword . "<br/>";
 		// echo $password_current;
@@ -46,7 +52,7 @@
 		}
 
 		//check to see if passwords match
-		if(!empty(trim($password)) && $password != $password_confirm) {
+		if(!empty($password) && $password != $password_confirm) {
 			$error_edit .= "Passwords do not match.<br/> \n\r";
 			$success = false;
 		}
@@ -56,7 +62,7 @@
 			//prep the data for saving in a new user object
 			$current_user->firstname = $firstname;
 			$current_user->lastname = $lastname;
-			if(!empty(trim($password)))
+			if(!empty($password))
 				$current_user->hashedPassword = md5(trim($password)); //encrypt the password for storage
 			$current_user->email = $email;
 			$current_user->avatar = $avatar;
@@ -79,17 +85,23 @@
 			require_once "partials/header.php"
 		?>
 		<?php echo ($error_edit != "") ? $error_edit : ""; ?>
-		<form action="edit.php" method="post">
-			E-Mail: <input type="text" value="<?php echo $email; ?>" name="email" /><br/>
-			First Name: <input type="text" value="<?php echo $firstname; ?>" name="firstname" /><br/>
-			Last Name: <input type="text" value="<?php echo $lastname; ?>" name="lastname" /><br/>
-			Photo Url: <input type="text" value="<?php echo $avatar; ?>" name="avatar" /><br/>
-			Current Password: <input type="password" name="current_password" /><br/>
-			New Password: <input type="password" name="password" /><br/>
-			New Password (confirm): <input type="password" name="password-confirm" /><br/>
-
-			<input type="submit" value="Update" name="submit-form" />
-		</form>
+		<center>
+			<form action="edit.php" method="POST">
+				<fieldset style="width:250px">
+					<legend align="center">Register</legend>
+					
+					<p><input type="email" value="<?php echo $email; ?>" name="email" placeholder="Email (required)" size="30" required /><p/>
+					<p><input type="text" value="<?php echo $firstname; ?>" name="firstname" placeholder="First Name (required)" size="30" required /><p/>
+					<p><input type="text" value="<?php echo $lastname; ?>" name="lastname" placeholder="Last Name" size="30" /><p/>
+					<p><input type="text" value="<?php echo $avatar; ?>" name="avatar" placeholder="Avatar URL" size="30" /><p/>
+					<p><input type="password" name="current_password" placeholder="Current Password (required)" size="30" required /></p>
+					<p><input type="password" name="password" placeholder="New Password (required)" size="30" required /><p/>
+					<p><input type="password" name="password-confirm" placeholder="Confirm New Password (required)" size="30" required /><p/>
+					
+					<input type="submit" value="Update" name="submit-form" />
+				</fieldset>
+			</form>
+		</center>
 	</body>
 </html>
 <?php $db->close(); ?>

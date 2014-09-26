@@ -4,11 +4,10 @@
 	<h1>eShop</h1>
 	<div class="pull-right">
 		<?php
-			echo $error;
 			if ($logged_in) {
 				echo "
 				<img src='$current_user->avatar' height=25 width=25/>
-				<a href='edit.php'>$current_user->firstname $current_user->lastname</a><br/>
+				Welcome, <a href='edit.php'>$current_user->firstname $current_user->lastname</a><br/>
 				<a href='logout.php'>Logout</a>
 				";
 			}else{
