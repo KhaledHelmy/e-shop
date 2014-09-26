@@ -39,14 +39,17 @@
 				";
 				if ($row['stock'] < 1) {
 					echo "
-						<img src='http://hightechdealz.com/images/sold-out-icon-2.png' width='60px' height='60px' />
+						<img src='img/soldout.png' width='60px' height='60px' />
 					";
 				}
 				else {
 					echo "
-						<p><input type='image'
-						src='http://www.losangelesmerchantservices.com/Shopping_Cart_Processing_Software.jpg'
-						name='buy' width='25px' height='25px'>$row[price] EGP</p>
+						<p>
+							<form action='confirmation.php' method='POST'>
+								<input type='hidden' name='product_id' value='$row[id]'>
+								<input type='image' src='img/cart.jpg' alt='Buy' width='25px' height='25px'>$row[price] EGP
+							</form>
+						</p>
 					";
 				}
 				echo "
