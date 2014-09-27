@@ -48,7 +48,7 @@
 						<p>$row[title], $row[price] EGP</p>
 						<hr>
 						<div><strong>Total $row[price] EGP</strong></div>
-						<form action='confirmation.php' method='POST'>
+						<form action='checkout_verdict.php' method='POST'>
 							<input type='submit' name='bought' value='Checkout' />
 							<input type='hidden' name='product_id' value='$row[id]'>
 						</form>
