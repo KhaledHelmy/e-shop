@@ -20,6 +20,12 @@ class UserTools {
 			$_SESSION["user"] = serialize(new User(mysql_fetch_assoc($result)));
 			$_SESSION["login_time"] = time();
 			$_SESSION["logged_in"] = 1;
+			if(isset($_POST['remember_me'])) {
+				$month = 60 * 60 * 24 * 30;
+				$user = unserialize(($_SESSION['user']));
+				setcookie('remember_me_user_email', $user->email, time() + $month);
+				setcookie('remember_me_user_password', $password, time() + $month);
+			}
 			return true;
 		}else{
 			return false;

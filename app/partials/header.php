@@ -14,13 +14,31 @@
 				<a href='logout.php'>Logout</a>
 				";
 			}else{
+				$user_email = "";
+				$user_password = "";
+				$checkbox_checked = "";
+
+				if(isset($_COOKIE['remember_me_user_email'])) {
+					$user_email = $_COOKIE['remember_me_user_email'];
+				}
+
+				if(isset($_COOKIE['remember_me_user_password'])) {
+					$user_password = $_COOKIE['remember_me_user_password'];
+				}
+
+				if(isset($_COOKIE['remember_me_user_email']) && isset($_COOKIE['remember_me_user_password'])) {
+					$checkbox_checked = "checked";
+				}
+
 				echo "
 				<form action='index.php' method='POST' id='credentials'>
 					<label for='emailform'>Email :</label>
-					<input type='text' name='email' id='emailform'/>
+					<input type='text' name='email' id='emailform' value='$user_email'/>
 					<label for='passwordform'>Password :</label>
-					<input type='password' name='password' id='passwordform'/>
+					<input type='password' name='password' id='passwordform' value='$user_password'/>
 					<input type='submit' name='submit-login'value='Login'/>
+					<label for='remembermecheckbox'>Remember Me </label>
+					<input type='checkbox' name='remember_me' $checkbox_checked/>
 				</form>
 				<a href='register.php'>Register</a>
 				";
