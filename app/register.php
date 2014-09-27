@@ -12,6 +12,10 @@ $email = "";
 $avatar = "";
 $error = "";
 
+if(isset($_SESSION['logged_in'])) {
+	header("Location: index.php");
+}
+
 //check to see that the form has been submitted
 if(isset($_POST['submit-form'])) { 
 
