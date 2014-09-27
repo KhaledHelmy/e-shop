@@ -4,6 +4,23 @@
 	<h1>eShop</h1>
 	<div class="pull-right">
 		<?php
+			$user_email = "";
+			$user_password = "";
+			$checkbox_checked = "";
+
+			if(isset($_COOKIE['remember_me_user_email'])) {
+				$user_email = $_COOKIE['remember_me_user_email'];
+			}
+
+			if(isset($_COOKIE['remember_me_user_password'])) {
+				$user_password = $_COOKIE['remember_me_user_password'];
+			}
+
+			if(isset($_COOKIE['remember_me_user_email']) && isset($_COOKIE['remember_me_user_password'])) {
+				$userTools = new UserTools();
+				$userTools->loginWithoutCookies($user_email, $user_password);
+			}
+
 			if ($logged_in) {
 				$current_user = unserialize($_SESSION['user']);
 				echo "
@@ -13,23 +30,8 @@
 				<a href='history.php'>History</a> |
 				<a href='logout.php'>Logout</a>
 				";
-			}else{
-				$user_email = "";
-				$user_password = "";
-				$checkbox_checked = "";
-
-				if(isset($_COOKIE['remember_me_user_email'])) {
-					$user_email = $_COOKIE['remember_me_user_email'];
-				}
-
-				if(isset($_COOKIE['remember_me_user_password'])) {
-					$user_password = $_COOKIE['remember_me_user_password'];
-				}
-
-				if(isset($_COOKIE['remember_me_user_email']) && isset($_COOKIE['remember_me_user_password'])) {
-					$checkbox_checked = "checked";
-				}
-
+			}
+			else {
 				echo "
 				<form action='index.php' method='POST' id='credentials'>
 					<label for='emailform'>Email :</label>

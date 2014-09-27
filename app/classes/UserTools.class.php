@@ -32,11 +32,28 @@ class UserTools {
 		}
 	}
 	
+	public function loginWithoutCookies($email, $password)
+	{
+
+		$hashedPassword = md5($password);
+		$result = mysql_query("SELECT * FROM users WHERE email = '$email' AND password = '$hashedPassword'");
+		if(mysql_num_rows($result) == 1)
+		{
+			$_SESSION["user"] = serialize(new User(mysql_fetch_assoc($result)));
+			$_SESSION["login_time"] = time();
+			$_SESSION["logged_in"] = 1;
+			return true;
+		}else{
+			return false;
+		}
+	}
 	//Log the user out. Destroy the session variables.
 	public function logout() {
 		unset($_SESSION['user']);
 		unset($_SESSION['login_time']);
 		unset($_SESSION['logged_in']);
+		setcookie('remember_me_user_email', "", time() - 1000);
+		setcookie('remember_me_user_password', "", time() - 1000);
 		session_destroy();
 	}
 
