@@ -29,6 +29,7 @@
 	</head>
 	<body>
 		<?php
+			echo "$error";
 			require_once "partials/header.php";
 			$result = mysql_query("SELECT * FROM products");
 			while ($row = mysql_fetch_array($result)) {

@@ -5,9 +5,12 @@
 	<div class="pull-right">
 		<?php
 			if ($logged_in) {
+				$current_user = unserialize($_SESSION['user']);
 				echo "
 				<img src='$current_user->avatar' height=25 width=25/>
 				Welcome, <a href='edit.php'>$current_user->firstname $current_user->lastname</a><br/>
+				<a href='index.php'>Home</a> |
+				<a href='history.php'>History</a> |
 				<a href='logout.php'>Logout</a>
 				";
 			}else{
@@ -16,7 +19,7 @@
 					<label for='emailform'>Email :</label>
 					<input type='text' name='email' id='emailform'/>
 					<label for='passwordform'>Password :</label>
-					<input type='text' name='password' id='passwordform'/>
+					<input type='password' name='password' id='passwordform'/>
 					<input type='submit' name='submit-login'value='Login'/>
 				</form>
 				<a href='register.php'>Register</a>
